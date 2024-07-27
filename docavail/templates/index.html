@@ -1,0 +1,269 @@
+{% block header %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Appointment System</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        @media (max-width: 992px) {
+            .navbar-collapse {
+                text-align: right;
+            }
+        }
+
+        .wrapper {
+            border: 1px solid black;
+            margin: 50px auto;
+            border-radius: 10px;
+            padding-top: 50px;
+            padding-bottom: 50px;
+            box-shadow: 0 0 40px 2px rgba(0,0,0,0.2);
+        }
+
+        .feature-box {
+            padding: 30px;
+        }
+        .feature-box h1 {
+            font-weight: 800;
+            margin-top: 2%;
+            color: #181010;
+        }
+        .feature-box p {
+            font-size: 30px;
+            margin: 50px;
+            color: #181010;
+        }
+
+        .feature-img {
+            width: 100%;
+            padding: 40px;
+        }
+
+        .dropdown-menu {
+            min-width: 100px;
+        }
+
+        .book-button, .contact-button {
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .book-button {
+            background-color: black;
+            border-color: black;
+            color: white;
+        }
+        a {
+            text-decoration: none;
+        }
+
+        .book-button:hover {
+            border: 1px solid black;
+            background-color: white;
+            color: black;
+        }
+
+        .contact-button {
+            background-color: transparent;
+            border-color: black;
+            color: black;
+        }
+
+        .contact-button:hover {
+            background-color: black;
+            color: white;
+        }
+
+        .about-section {
+            padding: 60px 0;
+            text-align:left;
+        }
+        .about-section h2 {
+            font-weight: bold;
+            font-size:45px;
+            margin-bottom: 20px;
+        }
+        .about-section p {
+            font-size: 25px;
+            color: #555;
+        }
+
+        .contact-section {
+            padding: 30px 0;
+        }
+
+        .contact-section h2 {
+            font-size: 30px;
+        }
+
+        .contact-section p {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+{% endblock header %}
+
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark p-3">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#" style="margin-left:20px">
+            <img src="https://i.postimg.cc/qM34ymn6/Screenshot-2024-06-23-112137.png" alt="Logo" width="40" height="40" class="d-inline-block align-top">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link mx-2 active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-2" href="#about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-2" id="contact-link" href="#">Contact</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link mx-2 dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Login
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="{% url 'admin:index' %}">Admin</a></li>
+                        <li><a class="dropdown-item" href="{% url 'login' %}">Doctor</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="wrapper">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="feature-box">
+                    <h1>Doctor Appointment System</h1>
+                    <p>Book your free appointment with ease and get the best medical consultation. Choose your preferred time slot, and connect with top doctors</p>
+                    <a href="{% url "patient" %}">
+                        <button type="button" class="btn btn book-button">Book an Appointment</button>
+                    </a>
+                    
+                    <button type="button" class="btn contact-button" style="margin-left:5px">Contact Us</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <img src="https://images.pexels.com/photos/40568/medical-appointment-doctor-healthcare-40568.jpeg" alt="doc" class="feature-img">
+            </div>
+        </div>
+    </div>
+
+    <div id="about" class="about-section">
+        <h2>About Doctor Appointment System</h2>
+        <p>This Doctor Appointment System is designed to simplify the process of booking and managing appointments with healthcare providers. Patients can easily schedule appointments, view available time slots, and receive confirmation notifications. Doctors can manage their schedules, view patient details, and provide timely care. Our system aims to enhance the efficiency and accessibility of healthcare services, ensuring a seamless experience for both patients and doctors.</p>
+    </div>
+    
+    <section class="contact-section bg-light py-3 py-md-5" id="contact-me">
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
+                    <h2 class="mb-4 text-center">Contact</h2>
+                    <p class="text-secondary mb-4 text-center">If you have any doubts or queries just write a mail to us we will contact you</p>
+                    <hr class="w-50 mx-auto mb-4 border-dark-subtle">
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row justify-content-lg-center">
+                <div class="col-12 col-lg-9">
+                    <div class="bg-white border rounded shadow-sm overflow-hidden">
+
+                        <form onsubmit="submitForm(event)">
+                            <div class="row gy-4 gy-xl-5 p-4 p-xl-5">
+                                <div class="col-12">
+                                    <label for="fullname" class="form-label">Full Name <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="fullname" name="fullname" required>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-envelope"></i>
+                                        </span>
+                                        <input type="email" class="form-control" id="email" name="email" required>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <label for="phone" class="form-label">Phone Number <span class="text-danger">*</span></label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-phone"></i>
+                                        </span>
+                                        <input type="text" class="form-control" id="phone" name="phone" required>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <label for="message" class="form-label">Message <span class="text-danger">*</span></label>
+                                    <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary w-100">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div id="statusMessage" class="p-4 p-xl-5 bg-light text-center d-none">
+                            <h5 class="text-success">Thank you for contacting us!</h5>
+                            <p>We have received your message and will get back to you shortly.</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+<footer class="bg-body-tertiary text-center text-lg-start">
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+      © 2024 Copyright:
+      <a class="text-body" href="https://mdbootstrap.com/">dileep7349@gmail.com</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+<!-- Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    function submitForm(event) {
+        event.preventDefault();
+        const fullname = document.getElementById('fullname').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const message = document.getElementById('message').value;
+        const mailtoLink = `mailto:dileep7349@gmail.com?subject=Contact%20Form%20Submission&body=Full%20Name:%20${fullname}%0AEmail:%20${email}%0APhone:%20${phone}%0AMessage:%20${message}`;
+        window.location.href = mailtoLink;
+
+        const form = event.target;
+        const statusMessage = document.getElementById('statusMessage');
+
+        form.classList.add('d-none');
+        statusMessage.classList.remove('d-none');
+
+        form.reset();
+    }
+
+    document.getElementById('contact-link').addEventListener('click', function(event) {
+        event.preventDefault();
+        document.getElementById('contact-me').scrollIntoView({ behavior: 'smooth' });
+    });
+</script>
+{% endblock content %}
+
+</body>
+</html>

@@ -1,0 +1,138 @@
+{% extends "index.html" %}
+
+{% block content %}
+<style>
+    @media (max-width: 992px) {
+        .navbar-collapse {
+            text-align: right;
+        }
+    }
+
+    .wrapper {
+        border: 1px solid black;
+        margin: 50px auto;
+        border-radius: 10px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        box-shadow: 0 0 40px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .feature-box {
+        padding: 30px;
+    }
+    .feature-box h1 {
+        font-weight: 800;
+        margin-top: 2%;
+        color: #181010;
+    }
+    .feature-box p {
+        font-size: 30px;
+        margin: 50px;
+        color: #181010;
+    }
+
+    .feature-img {
+        width: 100%;
+        padding: 40px;
+    }
+
+    .dropdown-menu {
+        min-width: 100px; /* Adjusted dropdown width */
+    }
+
+    .book-button, .contact-button {
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .book-button {
+        background-color: black;
+        border-color: black;
+        color: white;
+    }
+    a {
+        text-decoration: none;
+    }
+
+    .book-button:hover {
+        border: 1px solid black;
+        background-color: white;
+        color: black;
+    }
+
+    .contact-button {
+        background-color: transparent;
+        border-color: black;
+        color: black;
+    }
+
+    .contact-button:hover {
+        background-color: black;
+        color: white;
+    }
+    .sidebar {
+        height: 100vh;
+        width: 250px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: #343a40;
+        padding-top: 20px;
+    }
+    .sidebar a {
+        padding: 15px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 18px;
+        color: white;
+        display: block;
+    }
+    .sidebar a:hover {
+        background-color: #575d63;
+    }
+    .main-content {
+        margin-left: 260px;
+        padding: 20px;
+    }
+</style>
+<div class="container">
+    <div class="sidebar">
+        <a href="#" onclick="showContent('home')">
+            <i class="fas fa-home"></i> Home
+        </a>
+        <a href="#" onclick="showContent('patients')">
+            <i class="fas fa-users"></i> Patients
+        </a>
+        <a href="{% url "Logout" %}">
+            <i class="fas fa-sign-out-alt"></i> Logout
+        </a>
+    </div>
+    
+    <div class="main-content">
+        <div class="row" id="content">
+            <h1>Hello, {{ user.name }}</h1>
+            <p>
+                Welcome to the Doctor's Home page.
+            </p>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function showContent(content) {
+        let contentDiv = document.getElementById('content');
+        if (content === 'home') {
+            contentDiv.innerHTML = '<div class="col-md-12"><h1>Hello {{ user.name }}</h1></div>';
+        } else if (content === 'patients') {
+            let patientHtml = '<div class="container my-5"><div class="card"><div class="card-header bg-secondary text-white"><h1 class="h3 mb-0">Patients List</h1></div><div class="card-body p-4"><table class="table table-striped table-hover"><thead class="thead-dark"><tr><th scope="col">Name</th><th scope="col">Age</th><th scope="col">Gender</th><th scope="col">DOB</th></tr></thead><tbody>';
+                {% for pat_obj in patients %}
+                patientHtml += '<tr><td>{{ pat_obj.name }}</td><td>{{ pat_obj.age }}</td><td>{{ pat_obj.gender }}</td><td>{{ pat_obj.dob }}</td></tr>';
+                {% endfor %}
+                patientHtml += '</tbody></table></div></div></div>';
+                contentDiv.innerHTML = patientHtml;
+                
+                }
+    }
+
+</script>
+{% endblock content %}

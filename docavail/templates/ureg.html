@@ -1,0 +1,121 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+<style>
+    .card-registration .select-input.form-control[readonly]:not([disabled]) {
+        font-size: 1rem;
+        line-height: 2.15;
+        padding-left: .75em;
+        padding-right: .75em;
+    }
+    .card-registration .select-arrow {
+        top: 13px;
+    }
+    .card-registration {
+        max-width: 1000px;
+        margin: auto;
+    }
+    .card-registration img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+</style>
+<section class="h-100">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col">
+                <div class="card card-registration my-4">
+                    <div class="row g-0">
+                        <div class="col-md-6 d-none d-md-block">
+                            <img src="https://img.freepik.com/free-photo/beautiful-young-female-doctor-looking-camera-office_1301-7807.jpg" alt="Sample photo" class="img-fluid" style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" />
+                        </div>
+                        <div class="col-md-6">
+                            {% if messages %}
+                                <div class="alert alert-success m-5 mb-0" role="alert">
+                                {% for message in messages %}
+                                
+                                    {{ message}}
+                                {% endfor %}
+                                </div>
+                            {% endif %}
+                            <form method="post" novalidate>
+                                {% csrf_token %}
+                                <div class="card-body p-md-5 text-black">
+                                    <h3 class="mb-5 text-uppercase">Patient Registration Form</h3>
+                                    <div class="row">
+                                        <div class="col-md-7 mb-4">
+                                            <div data-mdb-input-init class="form-outline">
+                                                <input type="text" class="form-control form-control-lg" name="name" required />
+                                                <label class="form-label" for="form3Example1m">Name</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5 mb-4">
+                                            <div data-mdb-input-init class="form-outline">
+                                                <input type="number" class="form-control form-control-lg" name="age" required />
+                                                <label class="form-label">Age</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div data-mdb-input-init class="form-outline mb-4">
+                                        <input type="email" class="form-control form-control-lg" name="email" required />
+                                        <label class="form-label" for="form3Example97">Email ID</label>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-7 mb-4">
+                                            <div data-mdb-input-init class="form-outline">
+                                                <input type="text" class="form-control form-control-lg" name="address" required />
+                                                <label class="form-label" for="form3Example1m">Address</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5 mb-4">
+                                            <div data-mdb-input-init class="form-outline">
+                                                <input type="number" class="form-control form-control-lg" name="pin" required />
+                                                <label class="form-label" for="form3Example1n">Pincode</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
+                                        <h6 class="mb-0 me-4">Gender: </h6>
+                                        <div class="form-check form-check-inline mb-0 me-4">
+                                            <input class="form-check-input" type="radio" id="maleGender" value="Male" name="gender" required />
+                                            <label class="form-check-label" for="maleGender">Male</label>
+                                        </div>
+                                        <div class="form-check form-check-inline mb-0 me-4">
+                                            <input class="form-check-input" type="radio" id="femaleGender" value="Female" name="gender" required />
+                                            <label class="form-check-label" for="femaleGender">Female</label>
+                                        </div>
+                                    </div>
+                                    <div data-mdb-input-init class="form-outline mb-4">
+                                        <label class="form-label" for="dob">DOB</label>
+                                        <input type="date" class="form-control form-control-lg" name="dob" required />
+                                    </div>
+                                    <div class="form-outline mb-4">
+                                        <select class="form-select form-select-lg mb-3" name="doctor" aria-label=".form-select-lg example" required>
+                                            <option selected disabled>Select Doctor</option>
+                                            {% for doc_obj in Doctors_lst %}
+                                                <option value="{{ doc_obj.id }}">{{ doc_obj.name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="d-flex justify-content-end pt-3">
+                                        <button type="submit" class="btn btn-primary btn-lg ms-2">Submit form</button>
+                                    </div>
+                                </div>
+                            </form>
+                            {% if success %}
+                                <script>
+                                    alert("You have successfully booked an appointment!");
+                                </script>
+                            {% endif %}
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
